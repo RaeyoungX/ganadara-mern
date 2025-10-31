@@ -1,0 +1,22 @@
+### 注册
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123456",
+  "name": "Alice"
+}
+
+### 登录
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+### 获取用户信息
+GET http://localhost:3001/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MTg5MDgzMywiZXhwIjoxNzYyNDk1NjMzfQ.PeoSC_sj042ZyKDlGVrBCP60yK_LK-n3licHycTCbQg
