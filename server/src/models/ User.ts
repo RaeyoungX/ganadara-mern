@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
-// 1️⃣ 定义用户类型（TS 类型安全）
+//  定义用户类型（TS 类型安全）
 export interface IUser extends Document {
   email: string;
   passwordHash: string;
@@ -12,7 +12,7 @@ export interface IUser extends Document {
   updatedAt: Date;
 }
 
-// 2️⃣ 定义 Schema
+ 
 const userSchema = new Schema<IUser>(
   {
     email: { type: String, required: true, unique: true },
@@ -25,5 +25,5 @@ const userSchema = new Schema<IUser>(
   { timestamps: true } // 自动生成 createdAt / updatedAt
 );
 
-// 3️⃣ 创建并导出模型
+//   创建并导出模型
 export const User = model<IUser>('User', userSchema);
