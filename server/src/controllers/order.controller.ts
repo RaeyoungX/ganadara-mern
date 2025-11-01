@@ -45,3 +45,67 @@ export async function getMyOrders(req: Request, res: Response) {
     res.status(500).json({ error: 'Failed to fetch orders' });
   }
 }
+
+/**
+ *   模拟支付（前端点击“支付”后调用）
+ * 将订单状态从 pending → paid
+ */
+export async function payOrder(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const userId = (req as any).user?.id;
+
+    const order = await Order.findOne({ _id: id, user: userId });
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    if (order.status !== 'pending') {
+      return res.status(400).json({ error: 'Order is not pending' });
+    }
+
+    order.status = 'paid';
+    await order.save();
+
+    res.json({ message: 'Payment successful', order });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to process payment' });
+  }
+}
+
+/**
+ *   商家更新订单状态
+ * 比如：paid → confirmed → completed
+ */
+export async function updateOrderStatus(req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = ['pending', 'paid', 'confirmed', 'completed', 'cancelled'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' });
+    }
+
+    const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    res.json({ message: 'Order status updated', order });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update order status' });
+  }
+}
+
+/**
+ *  获取所有订单（商家端）
+ */
+export async function getAllOrders(req: Request, res: Response) {
+  try {
+    const orders = await Order.find()
+      .populate('user', 'email')
+      .populate('items.menu')
+      .sort({ createdAt: -1 });
+
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+}

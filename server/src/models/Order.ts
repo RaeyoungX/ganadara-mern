@@ -29,10 +29,9 @@ const orderSchema = new Schema<IOrder>(
     deliveryType: { type: String, enum: ['pickup', 'delivery'], required: true },
     address: { type: String },
     status: {
-      type: String,
-      enum: ['pending', 'confirmed', 'completed', 'cancelled'],
-      default: 'pending',
-    },
+    type: String,
+    enum: ['pending', 'paid', 'confirmed', 'completed', 'cancelled'],
+    default: 'pending',},
   },
   { timestamps: true }
 );
