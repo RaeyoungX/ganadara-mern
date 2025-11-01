@@ -43,3 +43,18 @@ Content-Type: application/json
 ### 获取当前用户订单
 GET http://localhost:3001/api/orders/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MjAzNjY0MSwiZXhwIjoxNzYyNjQxNDQxfQ.8-0imKHrOsPBke8Ev6CJSMoYDtv3SCrg4fZnH5_Imd0
+
+### 模拟支付
+POST http://localhost:3001/api/orders/69068bf066eac7bc9523ef34/pay
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MjAzNjY0MSwiZXhwIjoxNzYyNjQxNDQxfQ.8-0imKHrOsPBke8Ev6CJSMoYDtv3SCrg4fZnH5_Imd0
+
+### 更新订单状态（商家操作）
+PATCH http://localhost:3001/api/orders/69068bf066eac7bc9523ef34/status
+Content-Type: application/json
+
+{
+  "status": "completed"
+}
+
+### 获取所有订单（商家操作）
+GET http://localhost:3001/api/orders
