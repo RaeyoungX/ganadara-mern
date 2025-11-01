@@ -1,0 +1,45 @@
+### 注册
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123456",
+  "name": "Alice"
+}
+
+### 登录
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "123456"
+}
+
+### 获取用户信息
+GET http://localhost:3001/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MjAzNjY0MSwiZXhwIjoxNzYyNjQxNDQxfQ.8-0imKHrOsPBke8Ev6CJSMoYDtv3SCrg4fZnH5_Imd0
+### 获取所有分类
+GET http://localhost:3001/api/categories
+
+### 获取菜单列表
+GET http://localhost:3001/api/menu
+
+### 创建订单
+POST http://localhost:3001/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MjAzNjY0MSwiZXhwIjoxNzYyNjQxNDQxfQ.8-0imKHrOsPBke8Ev6CJSMoYDtv3SCrg4fZnH5_Imd0
+Content-Type: application/json
+
+{
+  "items": [
+    { "menu": "690688424905f714e4dfdf26", "quantity": 2 },
+    { "menu": "690688424905f714e4dfdf27", "quantity": 1 }
+  ],
+  "deliveryType": "pickup",
+  "address": ""
+}
+
+### 获取当前用户订单
+GET http://localhost:3001/api/orders/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MDQ1MTk0MTRhMzcyZjM5YWQ1M2I0YiIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2MjAzNjY0MSwiZXhwIjoxNzYyNjQxNDQxfQ.8-0imKHrOsPBke8Ev6CJSMoYDtv3SCrg4fZnH5_Imd0
